@@ -23,4 +23,6 @@ urlpatterns = [
     path('saludo/', saludo),
     path('muestra_nombre/<nombre>/', muestra_nombre),
     path('probando_template/', probando_template),
+    path('usando_loader/', usando_loader),
+    path('curso/<nombre>/<numero>/', curso),
 ]
