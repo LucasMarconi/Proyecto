@@ -1,40 +1,36 @@
 from django.shortcuts import render
 from App1.forms import *
-from App1.models import Curso
-
+from App1.models import Cliente
 from django.http import HttpResponse
 
 def inicio(request):
     return render(request, "App1/base.html")
 
-def cursos(request):
-    return render(request, "App1/cursos.html")
+def clientes(request):
+    return render(request, "App1/clientes.html")
 
-def profesores(request):
-    return HttpResponse("Vista profesores")
-
-def estudiantes(request):
+def productos(request):
     return HttpResponse("Vista estudiantes")
 
-def entregables(request):
+def sucursales(request):
     return HttpResponse("Vista entregables")
    
-def cursoFormulario(request):
+def clienteFormulario(request):
  
       if request.method == 'POST':
  
-            miFormulario = CursoFormulario(request.POST ) # Aqui me llega la informacion del html
+            miFormulario = ClienteFormulario(request.POST ) 
             print(miFormulario)
  
             if miFormulario.is_valid():
                   informacion = miFormulario.cleaned_data
-                  curso = Curso(nombre=informacion['curso'], camada=informacion['camada'])
-                  curso.save()
+                  cliente = Cliente(nombre=informacion['nombre'], email=informacion['email'],   edad=informacion['edad'])
+                  cliente.save()
                   return render(request, "App1/base.html")
       else:
-            miFormulario = CursoFormulario()
+            miFormulario = ClienteFormulario()
  
-      return render(request, "App1/cursoFormulario.html", {"miFormulario": miFormulario}) 
+      return render(request, "App1/clienteFormulario.html", {"miFormulario": miFormulario}) 
 
 def mostrar(request):
     pass
@@ -43,16 +39,16 @@ def buscar(request):
     
     if request.method == 'POST':
          
-            miFormulario = BusquedaCursos(request.POST ) 
+            miFormulario = BusquedaClinete(request.POST ) 
             print(miFormulario)
  
             if miFormulario.is_valid():
                 informacion = miFormulario.cleaned_data
-                cursos = Curso.objects.filter(nombre__icontains=informacion["curso"])
-                return render(request, "App1/lista.html", {"cursos": cursos})
+                clientes = Cliente.objects.filter(nombre__icontains=informacion["nombre"])
+                return render(request, "App1/lista.html", {"clientes": clientes})
             else:
                 print("\n\nERROR IS_VALID FALSE\n\n")
     else:
-        miFormulario = BusquedaCursos()
+        miFormulario = BusquedaClinete()
  
-    return render(request, "App1/cursoFormulario.html", {"miFormulario": miFormulario})
+    return render(request, "App1/clienteFormulario.html", {"miFormulario": miFormulario})

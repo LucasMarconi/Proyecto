@@ -47,21 +47,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'cursos' %}">Cursos</a>
+              <a class="nav-link" href="{% url 'Clientes' %}">Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#!">Profesores</a>
+              <a class="nav-link" href="#!">Productos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#!">Estudiantes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#!">Entregables</a>
+              <a class="nav-link" href="#!">Sucursales</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    {% block main %}
     <!-- Header-->
     <header class="masthead text-center text-white">
       <div class="masthead-content">
@@ -78,7 +76,6 @@
       <div class="bg-circle-3 bg-circle"></div>
       <div class="bg-circle-4 bg-circle"></div>
     </header>
-    {% block main %}
     <!-- Content section 1-->
     <section id="scroll">
       <div class="container px-5">

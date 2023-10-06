@@ -1,10 +1,11 @@
 from django import forms
 
-class CursoFormulario(forms.Form):
+class ClienteFormulario(forms.Form):
     
-    curso = forms.CharField()
-    camada = forms.IntegerField()
+    nombre = forms.CharField()
+    edad = forms.IntegerField()
+    email = forms.EmailField()
     
-class BusquedaCursos(forms.Form):
+class BusquedaClinete(forms.Form):
     
-    curso = forms.CharField()
+    nombre = forms.CharField()
