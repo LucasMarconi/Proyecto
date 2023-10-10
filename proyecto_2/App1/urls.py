@@ -2,10 +2,9 @@ from django.urls import path
 from App1 import views
 
 urlpatterns = [
-    path('inicio/', views.inicio),
+    path('inicio/', views.inicio, name="Inicio"),
     path('clientes/', views.clienteFormulario, name="Clientes"),
-    path('productos/', views.productos, name="Productos"),
-    path('sucursales/', views.sucursales, name="Sucursales"),
-    path('buscarform/', views.buscar, name="Buscar"),
-    path('mostrarform/', views.mostrar, name="Mostrar"),
+    path('productos/', views.productosFormulario, name="Productos"),
+    path('sucursales/', views.sucursalesFormulario, name="Sucursales"),
+    path('buscarform/', views.buscarCli, name="Buscar"),
 ]

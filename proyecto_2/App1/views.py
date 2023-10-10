@@ -1,19 +1,46 @@
 from django.shortcuts import render
 from App1.forms import *
-from App1.models import Cliente
-from django.http import HttpResponse
+from App1.models import *
 
 def inicio(request):
-    return render(request, "App1/base.html")
+    clientes = Cliente.objects.all()
+    suc = Sucursal.objects.all()
+    prod = Producto.objects.all()
+    return render(request, "App1/base.html", {"clientes": clientes, "sucursales": suc, "productos": prod})
 
-def clientes(request):
-    return render(request, "App1/clientes.html")
+def productosFormulario(request):
+    
+    if request.method == 'POST':
+ 
+            miFormulario = ProductoFormulario(request.POST ) 
+            print(miFormulario)
+ 
+            if miFormulario.is_valid():
+                  informacion = miFormulario.cleaned_data
+                  prod = Producto(nombre=informacion['nombre'], precio=informacion['precio'])
+                  prod.save()
+                  return render(request, "App1/base.html")
+    else:
+            miFormulario = ProductoFormulario()
+ 
+    return render(request, "App1/ProductoFormulario.html", {"miFormulario": miFormulario})
 
-def productos(request):
-    return HttpResponse("Vista estudiantes")
-
-def sucursales(request):
-    return HttpResponse("Vista entregables")
+def sucursalesFormulario(request):
+    
+    if request.method == 'POST':
+ 
+            miFormulario = SucursalFormulario(request.POST ) 
+            print(miFormulario)
+ 
+            if miFormulario.is_valid():
+                  informacion = miFormulario.cleaned_data
+                  suc = Sucursal(calle=informacion['calle'], altura=informacion['altura'])
+                  suc.save()
+                  return render(request, "App1/base.html")
+    else:
+            miFormulario = SucursalFormulario()
+ 
+    return render(request, "App1/SucursalFormulario.html", {"miFormulario": miFormulario})
    
 def clienteFormulario(request):
  
@@ -32,14 +59,11 @@ def clienteFormulario(request):
  
       return render(request, "App1/clienteFormulario.html", {"miFormulario": miFormulario}) 
 
-def mostrar(request):
-    pass
-
-def buscar(request):
+def buscarCli(request):
     
     if request.method == 'POST':
          
-            miFormulario = BusquedaClinete(request.POST ) 
+            miFormulario = BusquedaCliente(request.POST ) 
             print(miFormulario)
  
             if miFormulario.is_valid():
@@ -49,6 +73,6 @@ def buscar(request):
             else:
                 print("\n\nERROR IS_VALID FALSE\n\n")
     else:
-        miFormulario = BusquedaClinete()
+        miFormulario = BusquedaCliente()
  
     return render(request, "App1/clienteFormulario.html", {"miFormulario": miFormulario})

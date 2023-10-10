@@ -32,7 +32,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div class="container px-5">
-        <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -50,10 +50,10 @@
               <a class="nav-link" href="{% url 'Clientes' %}">Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#!">Productos</a>
+              <a class="nav-link" href="{% url 'Productos' %}">Productos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#!">Sucursales</a>
+              <a class="nav-link" href="{% url 'Sucursales' %}">Sucursales</a>
             </li>
           </ul>
         </div>
@@ -84,20 +84,19 @@
             <div class="p-5">
               <img
                 class="img-fluid rounded-circle"
-                src="{% static 'App1/assets/img/01.jpg'%}"
+                src="{% static 'App1/assets/img/cliente.png'%}"
                 alt="..."
               />
             </div>
           </div>
           <div class="col-lg-6 order-lg-1">
             <div class="p-5">
-              <h2 class="display-4">For those about to rock...</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                aliquid, mollitia odio veniam sit iste esse assumenda amet
-                aperiam exercitationem, ea animi blanditiis recusandae! Ratione
-                voluptatum molestiae adipisci, beatae obcaecati.
-              </p>
+              <h2 class="display-2">Clientes registrados</h2>
+              {% for cliente in clientes%}
+              <p>Nombre: {{ cliente.nombre }}</p>
+              <p>Email: {{ cliente.email }}</p>
+              <p>Edad: {{ cliente.edad }}</p>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -111,20 +110,20 @@
             <div class="p-5">
               <img
                 class="img-fluid rounded-circle"
-                src="{% static 'App1/assets/img/02.jpg'%}"
+                src="{% static 'App1/assets/img/producto.png'%}"
+                width="250"
+                height="250"
                 alt="..."
               />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="p-5">
-              <h2 class="display-4">We salute you!</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                aliquid, mollitia odio veniam sit iste esse assumenda amet
-                aperiam exercitationem, ea animi blanditiis recusandae! Ratione
-                voluptatum molestiae adipisci, beatae obcaecati.
-              </p>
+              <h2 class="display-2">Productos registrados</h2>
+              {% for prod in productos%}
+              <p>Nombre: {{ prod.nombre }}</p>
+              <p>Precio: {{ prod.precio }}</p>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -138,20 +137,18 @@
             <div class="p-5">
               <img
                 class="img-fluid rounded-circle"
-                src="{% static 'App1/assets/img/03.jpg'%}"
+                src="{% static 'App1/assets/img/sucursales.png'%}"
                 alt="..."
               />
             </div>
           </div>
           <div class="col-lg-6 order-lg-1">
             <div class="p-5">
-              <h2 class="display-4">Let there be rock!</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-                aliquid, mollitia odio veniam sit iste esse assumenda amet
-                aperiam exercitationem, ea animi blanditiis recusandae! Ratione
-                voluptatum molestiae adipisci, beatae obcaecati.
-              </p>
+              <h2 class="display-2">Sucursales registradas</h2>
+              {% for suc in sucursales%}
+              <p>Calle: {{ suc.calle }}</p>
+              <p>Altura: {{ suc.altura }}</p>
+              {% endfor %}
             </div>
           </div>
         </div>
