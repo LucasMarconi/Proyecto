@@ -14,7 +14,7 @@
   <div class="bg-circle-4 bg-circle"></div>
 </header>
 
-{% for cliente in clientes %}
+{% if cliente in clientes%} {% for cliente in clientes %}
 
 <div class="container px-5">
   <div class="row gx-5 align-items-center">
@@ -27,5 +27,14 @@
     </div>
   </div>
 </div>
-
-{% endfor %} {% endblock main %}
+{% endfor %} {% else %}
+<div class="container px-5">
+  <div class="row gx-5 align-items-center">
+    <div class="col-lg-6 order-lg-2">
+      <div class="p-5">
+        <p>No se encontro el cliente {{cliente.nombre}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock main %}
