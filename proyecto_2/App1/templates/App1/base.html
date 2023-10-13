@@ -47,7 +47,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'Clientes' %}">Clientes</a>
+              <a class="nav-link" href="{% url 'List' %}">Clientes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'Productos' %}">Productos</a>
@@ -91,12 +91,16 @@
           </div>
           <div class="col-lg-6 order-lg-1">
             <div class="p-5">
-              <h2 class="display-2">Clientes registrados</h2>
-              {% for cliente in clientes%}
-              <p>Nombre: {{ cliente.nombre }}</p>
-              <p>Email: {{ cliente.email }}</p>
-              <p>Edad: {{ cliente.edad }}</p>
-              {% endfor %}
+              <h2 class="display-2">Clientes</h2>
+              <p>
+                Para formar parte de nuestros clientes solamnte tenes que
+                iniciar sesion!
+                <p><a
+                  class="btn btn-primary rounded-pill mt-1"
+                  href="{% url 'Login' %}"
+                  >Inciar Sesion</a
+                ></p>
+              </p>
             </div>
           </div>
         </div>
@@ -120,10 +124,14 @@
           <div class="col-lg-6">
             <div class="p-5">
               <h2 class="display-2">Productos registrados</h2>
-              {% for prod in productos%}
-              <p>Nombre: {{ prod.nombre }}</p>
-              <p>Precio: {{ prod.precio }}</p>
-              {% endfor %}
+              <ul>
+                {% for prod in productos%}
+                <li>
+                  Nombre: {{ prod.nombre }} | Precio: {{ prod.precio }}
+                  <a href="{% url 'BorrarProd' prod.id %}"> Eliminar </a>
+                </li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
         </div>
@@ -145,10 +153,12 @@
           <div class="col-lg-6 order-lg-1">
             <div class="p-5">
               <h2 class="display-2">Sucursales registradas</h2>
-              {% for suc in sucursales%}
-              <p>Calle: {{ suc.calle }}</p>
-              <p>Altura: {{ suc.altura }}</p>
-              {% endfor %}
+              <ul>
+                {% for suc in sucursales%}
+                <li>Calle: {{ suc.calle }}</li>
+                <li>Altura: {{ suc.altura }}</li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
         </div>
